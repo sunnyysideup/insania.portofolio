@@ -1,0 +1,1020 @@
+/* 1. WARNA & VARIABEL ------------------------------------- */
+:root {
+  /* Palet utama */
+  --pink: #f4c9d8;
+  --blue: #c9ddf5;
+  --lavender: #d9c9f2;
+  --cream: #faf7f2;
+  --grey: #e8e5e8;
+  --plum: #514b5a;
+  --butter: #f7e3a1; /* aksen kecil saja */
+
+  /* Warna semantik (berubah saat dark mode) */
+  --bg: var(--cream);
+  --dots: #e3dee4;
+  --surface: #fffdf8;
+  --text: var(--plum);
+  --text-soft: #6e6779;
+  --line: var(--plum);
+  --shadow: rgba(81, 75, 90, 0.9);
+  --card-pink: var(--pink);
+  --card-blue: var(--blue);
+  --card-lavender: var(--lavender);
+  --card-grey: var(--grey);
+  --focus: #7a62c8;
+  --error: #a33a5b;
+  --ok: #3e7a5b;
+
+  --font-head: "Pixelify Sans", "Press Start 2P", "Courier New", monospace;
+  --font-body: "Quicksand", ui-rounded, "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+[data-theme="dark"] {
+  --bg: #2a2631;
+  --dots: #37323f;
+  --surface: #38333f;
+  --text: #f6f0f8;
+  --text-soft: #cfc6d8;
+  --line: #b9aecb;
+  --shadow: rgba(14, 12, 18, 0.9);
+  --card-pink: #5c4655;
+  --card-blue: #3e5069;
+  --card-lavender: #51456c;
+  --card-grey: #4a4553;
+  --focus: #c9b6ff;
+  --error: #ffb3c9;
+  --ok: #a8e6c3;
+}
+
+/* 2. RESET DAN DASAR -------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text);
+  background-color: var(--bg);
+  /* titik-titik halus seperti kertas jurnal */
+  background-image: radial-gradient(var(--dots) 2px, transparent 2px);
+  background-size: 24px 24px;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+main {
+  flex: 1;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.6rem;
+  letter-spacing: 0.01em;
+}
+h1 {
+  font-size: clamp(2.3rem, 6vw, 3.8rem);
+}
+h2 {
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+}
+h3 {
+  font-size: 1.2rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+li {
+  margin-bottom: 0.45rem;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px dashed var(--focus);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  background: var(--plum);
+  color: var(--cream);
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  z-index: 100;
+}
+.skip-link:focus {
+  top: 0.8rem;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Gambar pixel art: tajam dan punya "tepi stiker" di mode gelap */
+.pixel {
+  image-rendering: pixelated;
+}
+[data-theme="dark"] .sticker {
+  filter: drop-shadow(2px 0 0 #fffdf8) drop-shadow(-2px 0 0 #fffdf8)
+    drop-shadow(0 2px 0 #fffdf8) drop-shadow(0 -2px 0 #fffdf8);
+}
+
+/* 3. HEADER & NAVIGASI ------------------------------------ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 3px dashed var(--line);
+}
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.7rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.brand img {
+  width: 36px;
+  height: auto;
+}
+
+.main-nav {
+  margin-left: auto;
+}
+.nav-list {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-list li {
+  margin: 0;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  font-family: var(--font-head);
+  font-weight: 600;
+  text-decoration: none;
+  border: 3px solid transparent;
+  border-radius: 12px;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.nav-link:hover {
+  background: var(--card-lavender);
+  transform: translateY(-2px);
+}
+
+/* Penanda halaman aktif (diberi oleh JavaScript) */
+.nav-link.active {
+  background: var(--card-pink);
+  border-color: var(--line);
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.8rem;
+  font: inherit;
+  font-family: var(--font-head);
+  font-weight: 600;
+  color: var(--text);
+  background: var(--card-blue);
+  border: 3px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 3px 3px 0 var(--shadow);
+  cursor: pointer;
+}
+.icon-btn:hover {
+  transform: translate(-1px, -1px);
+}
+.icon-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--shadow);
+}
+.icon-btn img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+/* 4. KOMPONEN --------------------------------------------- */
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.2rem 3rem;
+}
+
+/* Jendela aplikasi retro */
+.window {
+  position: relative;
+  background: var(--surface);
+  border: 3px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 7px 7px 0 var(--shadow);
+}
+.window__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.45rem 0.9rem;
+  border-bottom: 3px solid var(--line);
+  background: var(--card-blue);
+  border-radius: 12px 12px 0 0;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.window--pink > .window__bar {
+  background: var(--card-pink);
+}
+.window--lavender > .window__bar {
+  background: var(--card-lavender);
+}
+.window--blue > .window__bar {
+  background: var(--card-blue);
+}
+.window--grey > .window__bar {
+  background: var(--card-grey);
+}
+
+.window__dots {
+  display: flex;
+  gap: 5px;
+}
+.window__dots span {
+  width: 11px;
+  height: 11px;
+  background: var(--surface);
+  border: 2px solid var(--line);
+}
+.window__body {
+  padding: 1.4rem 1.5rem;
+}
+
+/* Selotip */
+.tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 90px;
+  height: 26px;
+  background: rgba(217, 201, 242, 0.75);
+  border-left: 3px dotted rgba(81, 75, 90, 0.3);
+  border-right: 3px dotted rgba(81, 75, 90, 0.3);
+  transform: translateX(-50%) rotate(-3deg);
+  z-index: 2;
+}
+.tape--pink {
+  background: rgba(244, 201, 216, 0.85);
+}
+.tape--blue {
+  background: rgba(201, 221, 245, 0.85);
+}
+
+/* Polaroid */
+.polaroid {
+  position: relative;
+  margin: 0;
+  padding: 1rem 1rem 0.9rem;
+  background: #fffdf8;
+  color: var(--plum);
+  border: 3px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 6px 6px 0 var(--shadow);
+  transform: rotate(2deg);
+  text-align: center;
+}
+.polaroid__photo {
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  background: var(--blue);
+  border: 3px solid var(--plum);
+  border-radius: 6px;
+  min-height: 250px;
+}
+.polaroid figcaption {
+  margin-top: 0.8rem;
+  font-family: var(--font-head);
+  font-weight: 600;
+}
+
+/* Sticky note */
+.sticky {
+  position: relative;
+  padding: 1.1rem 1.2rem 1.2rem;
+  background: var(--card-lavender);
+  border: 3px solid var(--line);
+  border-radius: 6px 6px 22px 6px;
+  box-shadow: 5px 5px 0 var(--shadow);
+  transform: rotate(-1.5deg);
+}
+.sticky--pink {
+  background: var(--card-pink);
+  transform: rotate(1.2deg);
+}
+.sticky--blue {
+  background: var(--card-blue);
+}
+.sticky h3 {
+  margin-bottom: 0.4rem;
+}
+.sticky ul {
+  list-style: square;
+}
+.sticky li::marker {
+  color: var(--line);
+}
+.sticky p:last-child {
+  margin-bottom: 0;
+}
+
+/* Tombol */
+.btn {
+  display: inline-block;
+  padding: 0.65rem 1.4rem;
+  font: inherit;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: none;
+  color: var(--plum);
+  background: var(--pink);
+  border: 3px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 4px 4px 0 var(--shadow);
+  cursor: pointer;
+  transition:
+    transform 0.12s,
+    box-shadow 0.12s;
+}
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--shadow);
+}
+.btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--shadow);
+}
+.btn--blue {
+  background: var(--blue);
+}
+.btn--lavender {
+  background: var(--lavender);
+}
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.4rem;
+}
+
+/* Chip / label kecil */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.chips li {
+  margin: 0;
+}
+.chip {
+  display: inline-block;
+  padding: 0.2rem 0.85rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--card-grey);
+  border: 2px solid var(--line);
+  border-radius: 999px;
+}
+.chip--pink {
+  background: var(--card-pink);
+}
+.chips--stack {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+.chips--stack li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+}
+.chip--blue {
+  background: var(--card-blue);
+}
+.chip--lavender {
+  background: var(--card-lavender);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 3.2rem 0 1.4rem;
+}
+.section-title img {
+  width: 40px;
+  height: auto;
+  flex: none;
+}
+.section-title h2 {
+  margin: 0;
+}
+.section-note {
+  max-width: 62ch;
+  color: var(--text-soft);
+  margin: -0.6rem 0 1.4rem;
+}
+
+.dashed-divider {
+  border: 0;
+  border-top: 3px dashed var(--line);
+  margin: 2.5rem 0;
+  opacity: 0.6;
+}
+
+/* 5. HALAMAN HOME ----------------------------------------- */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.25fr 0.85fr;
+  gap: 2.6rem;
+  align-items: center;
+  padding-top: 1rem;
+}
+.hero h1 {
+  margin-bottom: 0.3rem;
+}
+.hero__role {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 1.1rem;
+}
+.hero__text {
+  max-width: 54ch;
+}
+
+.hero__pet {
+  position: relative;
+}
+.pet-stage {
+  position: relative;
+}
+.pet-img {
+  width: 190px;
+  height: auto;
+  animation: bob 3.2s ease-in-out infinite;
+}
+
+.speech {
+  position: relative;
+  margin: 1.4rem 0 0.9rem;
+  padding: 0.7rem 1rem;
+  min-height: 4.2rem;
+  background: #fffdf8;
+  color: var(--plum);
+  border: 3px solid var(--plum);
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 0.98rem;
+  line-height: 1.45;
+  text-align: left;
+}
+.speech::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  background: #fffdf8;
+  border-left: 3px solid var(--plum);
+  border-top: 3px solid var(--plum);
+  transform: translateX(-50%) rotate(45deg);
+}
+.greet-count {
+  margin: 0.6rem 0 0;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+}
+.folder-card {
+  position: relative;
+  padding: 1.5rem 1.4rem 1.3rem;
+  border: 3px solid var(--line);
+  border-radius: 6px 22px 16px 16px;
+  box-shadow: 6px 6px 0 var(--shadow);
+  background: var(--card-blue);
+}
+.folder-card:nth-child(2) {
+  background: var(--card-lavender);
+}
+.folder-card:nth-child(3) {
+  background: var(--card-pink);
+}
+.folder-card img.folder-card__icon {
+  width: auto;
+  height: 36px;
+  margin-bottom: 0.8rem;
+}
+.folder-card ul {
+  padding-left: 1.1rem;
+}
+.folder-card li small {
+  display: block;
+  opacity: 0.85;
+}
+
+.learning-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.8rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+
+/* 6. HALAMAN ABOUT ---------------------------------------- */
+.page-intro {
+  max-width: 60ch;
+  margin-bottom: 2rem;
+}
+
+.about-top {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 2rem;
+  align-items: start;
+}
+.about-top .window p:last-child {
+  margin-bottom: 0;
+}
+
+.edu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.edu-list li {
+  position: relative;
+  margin: 0 0 1rem;
+  padding: 0.9rem 1.1rem 0.9rem 3.2rem;
+  background: var(--surface);
+  border: 3px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 4px 4px 0 var(--shadow);
+}
+.edu-list li img {
+  position: absolute;
+  left: 0.9rem;
+  top: 1rem;
+  width: 30px;
+  height: auto;
+}
+.edu-list strong {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+}
+.edu-list span {
+  color: var(--text-soft);
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.6rem;
+}
+.skill-grid .window__body {
+  padding-top: 1.1rem;
+}
+
+/* 7. HALAMAN EXPERIENCE ----------------------------------- */
+.timeline {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 2.4rem;
+}
+/* garis putus-putus vertikal */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 0;
+  bottom: 0;
+  border-left: 4px dashed var(--line);
+  opacity: 0.7;
+}
+.timeline > li {
+  position: relative;
+  margin: 0 0 2.4rem;
+}
+/* titik pixel pada garis */
+.timeline > li::before {
+  content: "";
+  position: absolute;
+  left: calc(-2.4rem + 3px);
+  top: 1.1rem;
+  width: 18px;
+  height: 18px;
+  background: var(--card-pink);
+  border: 3px solid var(--line);
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+.timeline > li:nth-child(2)::before {
+  background: var(--card-blue);
+}
+.timeline > li:nth-child(3)::before {
+  background: var(--card-lavender);
+}
+
+.exp-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.2rem 0 0.9rem;
+}
+.exp-card h3 {
+  margin-bottom: 0.3rem;
+}
+.exp-card ul {
+  list-style: square;
+}
+.exp-card li::marker {
+  color: var(--line);
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.3rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.cert-grid li {
+  margin: 0;
+}
+.cert {
+  position: relative;
+  height: 100%;
+  padding: 1.1rem 1rem 1rem;
+  background: var(--card-blue);
+  border: 3px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 5px 5px 0 var(--shadow);
+  transition: transform 0.15s;
+}
+.cert:hover {
+  transform: translateY(-4px) rotate(-1deg);
+}
+.cert--pink {
+  background: var(--card-pink);
+}
+.cert--lavender {
+  background: var(--card-lavender);
+}
+.cert img {
+  width: 28px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+.cert h3 {
+  font-size: 1.02rem;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+.cert p {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+/* Form kontak */
+.contact-wrap {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: start;
+}
+.form-field {
+  margin-bottom: 1.1rem;
+}
+.form-field label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  font: inherit;
+  color: #3f3a47;
+  background: #fffdf8;
+  border: 3px solid var(--plum);
+  border-radius: 10px;
+}
+.form-field textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+.form-field.has-error input,
+.form-field.has-error textarea {
+  border-color: var(--error);
+  border-style: dashed;
+}
+.field-error {
+  min-height: 1.3rem;
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--error);
+}
+
+.form-status {
+  margin-top: 1.1rem;
+  padding: 0.8rem 1rem;
+  border: 3px dashed var(--line);
+  border-radius: 12px;
+  background: var(--card-grey);
+  font-weight: 600;
+}
+.form-status[hidden] {
+  display: none;
+}
+.form-status.is-error {
+  border-color: var(--error);
+}
+.form-status.is-info {
+  border-color: var(--ok);
+}
+
+/* 8. FOOTER, DEKORASI, ANIMASI ---------------------------- */
+.site-footer {
+  border-top: 3px dashed var(--line);
+  background: var(--bg);
+  padding: 1.6rem 1.2rem 2rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+.footer-pets {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+.footer-pets img {
+  height: 34px;
+  width: auto;
+}
+.site-footer p {
+  margin: 0;
+}
+
+.deco {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+.deco img {
+  width: 100%;
+  height: auto;
+}
+.deco--cloud-a {
+  width: 110px;
+  top: -10px;
+  right: 14%;
+  animation: drift 14s ease-in-out infinite alternate;
+}
+.deco--cloud-b {
+  width: 80px;
+  top: 52%;
+  left: -1%;
+  animation: drift 18s ease-in-out infinite alternate-reverse;
+}
+.deco--star {
+  width: 34px;
+  animation: twinkle 3s ease-in-out infinite;
+}
+.deco--flower {
+  width: 44px;
+}
+.deco--star-a {
+  top: 1%;
+  left: 55%;
+  z-index: 2;
+}
+.deco--flower-a {
+  bottom: -14px;
+  left: 54%;
+  z-index: 2;
+}
+.deco--ribbon {
+  width: 56px;
+}
+
+.hero > :not(.deco) {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+@keyframes drift {
+  from {
+    transform: translateX(-14px);
+  }
+  to {
+    transform: translateX(18px);
+  }
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 9. RESPONSIF -------------------------------------------- */
+@media (max-width: 1000px) {
+  .cert-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .hero,
+  .about-top,
+  .learning-row,
+  .contact-wrap {
+    grid-template-columns: 1fr;
+  }
+  .highlight-grid {
+    grid-template-columns: 1fr;
+  }
+  .skill-grid {
+    grid-template-columns: 1fr;
+  }
+  .cert-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .polaroid {
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  .deco--cloud-b {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 1rem;
+  }
+  .header-inner {
+    flex-wrap: wrap;
+  }
+  .nav-toggle {
+    display: inline-flex;
+    margin-left: auto;
+  }
+  .theme-toggle .theme-label {
+    display: none;
+  }
+  .deco--cloud-a,
+  .deco--star-a {
+    display: none;
+  }
+
+  .main-nav {
+    order: 3;
+    flex-basis: 100%;
+    margin-left: 0;
+    display: none;
+  }
+  .main-nav.is-open {
+    display: block;
+  }
+  .nav-list {
+    flex-direction: column;
+    padding-top: 0.5rem;
+  }
+  .nav-link {
+    display: block;
+    text-align: center;
+  }
+
+  .page {
+    padding-top: 1.6rem;
+  }
+  .window__body {
+    padding: 1.1rem;
+  }
+  .cert-grid {
+    grid-template-columns: 1fr;
+  }
+  .pet-img {
+    width: 150px;
+  }
+  .polaroid,
+  .sticky,
+  .sticky--pink {
+    transform: none;
+  }
+}

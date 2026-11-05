@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About | Insania Istiqamah</title>
+    <meta
+      name="description"
+      content="Profil, pendidikan, keterampilan, dan bahasa Insania Istiqamah."
+    />
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+    <!-- Font opsional dari Google Fonts. Jika offline, browser memakai font cadangan di CSS. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#konten">Lewati ke konten</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="Insania, ke beranda">
+          <img
+            class="pixel sticker"
+            src="assets/icons/favicon.svg"
+            alt=""
+            width="36"
+            height="34"
+          />
+          <span>Insania</span>
+        </a>
+
+        <button
+          class="icon-btn nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="main-nav"
+        >
+          Menu
+        </button>
+
+        <nav class="main-nav" id="main-nav" aria-label="Navigasi utama">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="index.html">Home</a></li>
+            <li><a class="nav-link" href="about.html">About</a></li>
+            <li><a class="nav-link" href="experience.html">Experience</a></li>
+          </ul>
+        </nav>
+
+        <button
+          class="icon-btn theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-pressed="false"
+          aria-label="Mode gelap"
+        >
+          <img
+            class="theme-icon pixel"
+            src="assets/icons/moon.svg"
+            alt=""
+            width="20"
+            height="20"
+          />
+          <span class="theme-label">Mode gelap</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="konten">
+      <div class="page">
+        <h1>About me</h1>
+        <p class="page-intro">
+          Catatan singkat tentang latar belakang, pendidikan, kemampuan, dan
+          bahasa yang dikuasai Insania.
+        </p>
+
+        <section class="about-top" aria-labelledby="profil-title">
+          <div class="window window--pink">
+            <div class="window__bar">
+              <div class="window__dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <span>profil.txt</span>
+            </div>
+            <div class="window__body">
+              <h2 id="profil-title">Profil</h2>
+              <p>
+                Mahasiswa Sistem Informasi Universitas Brawijaya yang memiliki
+                pengalaman aktif dalam organisasi, administrasi, kepemimpinan,
+                dan kegiatan pengembangan siswa. Terbiasa mengelola dokumen,
+                berkoordinasi dalam tim, serta menjalankan kegiatan secara
+                terstruktur.
+              </p>
+              <p>
+                Memiliki ketertarikan pada teknologi dan data, khususnya
+                pengelolaan data, analisis data, dan pengembangan solusi
+                sistematis.
+              </p>
+            </div>
+          </div>
+          <figure class="polaroid">
+            <span class="tape tape--blue" aria-hidden="true"></span>
+            <div class="polaroid__photo">
+              <img
+                class="pixel sticker"
+                src="assets/images/bunny.svg"
+                alt="Kelinci pixel berwarna krem dengan telinga pink"
+                width="160"
+                height="160"
+              />
+            </div>
+            <figcaption>Teman belajar</figcaption>
+          </figure>
+        </section>
+
+        <div class="section-title">
+          <img class="pixel" src="assets/icons/book.svg" alt="" />
+          <h2>Pendidikan</h2>
+        </div>
+        <ul class="edu-list">
+          <li>
+            <img class="pixel" src="assets/icons/computer.svg" alt="" /><strong
+              >Universitas Brawijaya</strong
+            ><span>Sistem Informasi, 2026 sampai sekarang</span>
+          </li>
+          <li>
+            <img class="pixel" src="assets/icons/book.svg" alt="" /><strong
+              >SMA Negeri 1 Wates</strong
+            ><span>2023 sampai 2026</span>
+          </li>
+        </ul>
+
+        <div class="section-title">
+          <img class="pixel" src="assets/icons/sparkle.svg" alt="" />
+          <h2>Keterampilan</h2>
+        </div>
+        <div class="skill-grid">
+          <section class="window window--lavender" aria-labelledby="sk-org">
+            <div class="window__bar">
+              <div class="window__dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <span>organisasi.exe</span>
+            </div>
+            <div class="window__body">
+              <h3 id="sk-org">Keterampilan Organisasi</h3>
+              <ul class="chips">
+                <li><span class="chip chip--lavender">Leadership</span></li>
+                <li><span class="chip chip--lavender">Teamwork</span></li>
+                <li>
+                  <span class="chip chip--lavender"
+                    >Komunikasi dan Koordinasi</span
+                  >
+                </li>
+                <li>
+                  <span class="chip chip--lavender">Public Speaking</span>
+                </li>
+                <li>
+                  <span class="chip chip--lavender">Problem Solving</span>
+                </li>
+                <li>
+                  <span class="chip chip--lavender">Time Management</span>
+                </li>
+                <li>
+                  <span class="chip chip--lavender">Event Management</span>
+                </li>
+                <li>
+                  <span class="chip chip--lavender"
+                    >Training &amp; Mentoring</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="window window--pink" aria-labelledby="sk-adm">
+            <div class="window__bar">
+              <div class="window__dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <span>administrasi.doc</span>
+            </div>
+            <div class="window__body">
+              <h3 id="sk-adm">Keterampilan Administrasi</h3>
+              <ul class="chips">
+                <li>
+                  <span class="chip chip--pink">Administrasi Organisasi</span>
+                </li>
+                <li><span class="chip chip--pink">Surat-Menyurat</span></li>
+                <li>
+                  <span class="chip chip--pink"
+                    >Penyusunan Proposal dan Laporan</span
+                  >
+                </li>
+                <li>
+                  <span class="chip chip--pink">Dokumentasi Kegiatan</span>
+                </li>
+                <li>
+                  <span class="chip chip--pink"
+                    >Pengelolaan Arsip dan Dokumen</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="window window--blue" aria-labelledby="sk-tek">
+            <div class="window__bar">
+              <div class="window__dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <span>teknis.xls</span>
+            </div>
+            <div class="window__body">
+              <h3 id="sk-tek">Keterampilan Teknis</h3>
+              <ul class="chips">
+                <li><span class="chip chip--blue">Microsoft Word</span></li>
+                <li><span class="chip chip--blue">Microsoft Excel</span></li>
+                <li>
+                  <span class="chip chip--blue">Microsoft PowerPoint</span>
+                </li>
+                <li>
+                  <span class="chip chip--blue">Social Media Management</span>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="window window--grey" aria-labelledby="sk-bhs">
+            <div class="window__bar">
+              <div class="window__dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <span>bahasa.txt</span>
+            </div>
+            <div class="window__body">
+              <h3 id="sk-bhs">Bahasa</h3>
+              <ul class="chips chips--stack">
+                <li>
+                  <span class="chip chip--lavender">Bahasa Indonesia</span>
+                  Fasih/Native
+                </li>
+                <li>
+                  <span class="chip chip--blue">Bahasa Inggris</span> Terbatas
+                  namun fungsional
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+
+        <div class="btn-row">
+          <a class="btn" href="experience.html">Lanjut ke Experience</a>
+          <a class="btn btn--blue" href="index.html">Kembali ke Home</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-pets" aria-hidden="true">
+        <img class="pixel sticker" src="assets/images/cat.svg" alt="" />
+        <img class="pixel sticker" src="assets/images/bunny.svg" alt="" />
+        <img class="pixel sticker" src="assets/images/bear.svg" alt="" />
+      </div>
+      <p>
+        &copy; <span id="year">2026</span> Insania Istiqamah. Dibuat dengan
+        HTML, CSS, dan JavaScript murni.
+      </p>
+    </footer>
+  </body>
+</html>
